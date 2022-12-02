@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Composition</string>
+    <string name="textview_long_text">Это игра для умных и богатых детей которые любят считать деньги родителей
+    Если ты мой дорогой пупс не совсем туп то ты сможешь вычесть из большего числа меньшее и понять сколько киндеров ты можешь купить
+    </string>
+    <string name="description">Пояснениене</string>
+    <string name="Understend">Ясно понятно</string>
 </resources>
