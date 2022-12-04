@@ -11,6 +11,8 @@ import com.example.composition.R
 import com.example.composition.databinding.ActivityMainBinding.inflate
 import com.example.composition.databinding.ChoseLevelFragmetnBinding
 import com.example.composition.databinding.FragmentGameFinishedBinding
+import com.example.composition.domain.Entity.Level
+import com.example.composition.prisentation.GameFragment
 
 
 class ChooseLevelFragment : Fragment() {
@@ -28,9 +30,56 @@ class ChooseLevelFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        selectLevelClick()
+    }
+
+    private fun selectLevelClick() {
+        with(binding){
+            bTest.setOnClickListener {
+                requireActivity().supportFragmentManager.beginTransaction().
+                addToBackStack(GameFragment.GAME_FRAGMENT).
+                replace(R.id.main_container,GameFragment.newInstance(Level.TEST)).
+                commit()
+            }
+            bEasy.setOnClickListener {
+                requireActivity().supportFragmentManager.beginTransaction().
+                addToBackStack(GameFragment.GAME_FRAGMENT).
+                replace(R.id.main_container,GameFragment.newInstance(Level.EASY)).
+                commit()
+            }
+            bMidl.setOnClickListener {
+                requireActivity().supportFragmentManager.beginTransaction().
+                addToBackStack(GameFragment.GAME_FRAGMENT).
+                replace(R.id.main_container,GameFragment.newInstance(Level.NORMAL)).
+                commit()
+            }
+            bHard.setOnClickListener {
+                requireActivity().supportFragmentManager.beginTransaction().
+                addToBackStack(GameFragment.GAME_FRAGMENT).
+                replace(R.id.main_container,GameFragment.newInstance(Level.HARD)).
+                commit()
+            }
+        }
+
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+
+    companion object
+    {
+        const val CHOOSE_FRAGMENT_NAME = "ChooseLevelFragment"
+        fun newInstance( ):ChooseLevelFragment
+        {
+
+            return ChooseLevelFragment()
+
+        }
     }
 
 }
