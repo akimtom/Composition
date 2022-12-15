@@ -4,18 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.composition.R
 import com.example.composition.databinding.FragmentGameFinishedBinding
-import com.example.composition.databinding.FrgmentGameBinding
 import com.example.composition.domain.Entity.GameResult
-import ru.sumin.jetpackstart.presentation.ChooseLevelFragment
 
 class GameFinishFragment:Fragment() {
-    private lateinit var gameResult: GameResult
+    private  val args by navArgs<GameFinishFragmentArgs>()
+
    private var _binding:FragmentGameFinishedBinding?=null
    private val binding:FragmentGameFinishedBinding
     get() = _binding?:throw RuntimeException("FragmentGameFinishedBinding = null")
@@ -30,22 +28,20 @@ class GameFinishFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireArguments().getParcelable<GameResult>(GAME_RESULT)?.let {
-            gameResult = it
-        }
+
 
         binding.tvRequiredAnswers.text =
-            String.format(requireContext().resources.getString(R.string.required_score),gameResult.gameSittings.minCountOfRightAnswers)
+            String.format(requireContext().resources.getString(R.string.required_score),args.gameresult.gameSittings.minCountOfRightAnswers)
         binding.tvScoreAnswers.text=
-            String.format(requireContext().resources.getString(R.string.required_score),gameResult.countRightAnswers)
+            String.format(requireContext().resources.getString(R.string.required_score),args.gameresult.countRightAnswers)
         binding.tvRequiredPercentage.text=
-            String.format(requireContext().resources.getString(R.string.required_percentage),gameResult.gameSittings.minPercentOfRightAnswers)
+            String.format(requireContext().resources.getString(R.string.required_percentage),args.gameresult.gameSittings.minPercentOfRightAnswers)
         /*binding.tvScorePercentage.text=
-            String.format(requireContext().resources.getString(R.string.score_percentage),gameResult.gameSittings.*/
+            String.format(requireContext().resources.getString(R.string.score_percentage),args.gameresult.gameSittings.*/
         binding.buttonRetry.setOnClickListener {
             retryGame()
         }
-        if(gameResult.gameSittings.minCountOfRightAnswers<=gameResult.countRightAnswers)
+        if(args.gameresult.gameSittings.minCountOfRightAnswers<=args.gameresult.countRightAnswers)
         {
             binding.emojiResult.setImageResource(R.drawable.ic_smile)
         }
@@ -53,34 +49,21 @@ class GameFinishFragment:Fragment() {
         {
             binding.emojiResult.setImageResource(R.drawable.ic_sad)
         }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,object : OnBackPressedCallback(true){
-            override fun handleOnBackPressed() {
-                retryGame()
-            }
 
-        })
 
 
     }
     private fun retryGame()
     {
-        requireActivity().supportFragmentManager.popBackStack(GameFragment.GAME_FRAGMENT, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-    }
+        findNavController().popBackStack()
+         }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
-    companion object{
-        private const val GAME_RESULT = "g_result"
-        fun newInstance(gameResult: GameResult):GameFinishFragment
-        {
-        return    GameFinishFragment().apply {
-            arguments = Bundle().apply {
-                putParcelable(GAME_RESULT,gameResult)
-            }
-        }
-        }
-    }
+
+
+
 }

@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.composition.R
 import com.example.composition.databinding.FragmetWelcomeBinding
-import ru.sumin.jetpackstart.presentation.ChooseLevelFragment
 
 class WelcomeFragment:Fragment()
 {
@@ -30,10 +30,7 @@ class WelcomeFragment:Fragment()
     }
     private fun choseFragmentLevelRunning()
     {
-        requireActivity().supportFragmentManager.beginTransaction().
-        addToBackStack(ChooseLevelFragment.CHOOSE_FRAGMENT_NAME).
-        replace(R.id.main_container,ChooseLevelFragment.newInstance()).
-        commit()
+        findNavController().navigate(R.id.action_welcomeFragment_to_chooseLevelFragment2)
     }
 
     override fun onDestroyView() {

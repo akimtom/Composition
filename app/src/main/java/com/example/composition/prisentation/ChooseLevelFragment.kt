@@ -1,4 +1,4 @@
-package ru.sumin.jetpackstart.presentation
+package com.example.composition.prisentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,12 +7,10 @@ import android.view.View.inflate
 import android.view.ViewGroup
 import androidx.core.content.res.ColorStateListInflaterCompat.inflate
 import androidx.fragment.app.Fragment
-import com.example.composition.R
+import androidx.navigation.fragment.findNavController
 import com.example.composition.databinding.ActivityMainBinding.inflate
 import com.example.composition.databinding.ChoseLevelFragmetnBinding
-import com.example.composition.databinding.FragmentGameFinishedBinding
 import com.example.composition.domain.Entity.Level
-import com.example.composition.prisentation.GameFragment
 
 
 class ChooseLevelFragment : Fragment() {
@@ -38,31 +36,25 @@ class ChooseLevelFragment : Fragment() {
     private fun selectLevelClick() {
         with(binding){
             bTest.setOnClickListener {
-                requireActivity().supportFragmentManager.beginTransaction().
-                addToBackStack(GameFragment.GAME_FRAGMENT).
-                replace(R.id.main_container,GameFragment.newInstance(Level.TEST)).
-                commit()
+                launchGameFragment(Level.TEST)
             }
             bEasy.setOnClickListener {
-                requireActivity().supportFragmentManager.beginTransaction().
-                addToBackStack(GameFragment.GAME_FRAGMENT).
-                replace(R.id.main_container,GameFragment.newInstance(Level.EASY)).
-                commit()
+                launchGameFragment(Level.EASY)
             }
             bMidl.setOnClickListener {
-                requireActivity().supportFragmentManager.beginTransaction().
-                addToBackStack(GameFragment.GAME_FRAGMENT).
-                replace(R.id.main_container,GameFragment.newInstance(Level.NORMAL)).
-                commit()
+                launchGameFragment(Level.NORMAL)
             }
             bHard.setOnClickListener {
-                requireActivity().supportFragmentManager.beginTransaction().
-                addToBackStack(GameFragment.GAME_FRAGMENT).
-                replace(R.id.main_container,GameFragment.newInstance(Level.HARD)).
-                commit()
+                launchGameFragment(Level.HARD)
             }
         }
 
+    }
+    private fun launchGameFragment(level: Level)
+    {
+
+
+        findNavController().navigate(ChooseLevelFragmentDirections.actionChooseLevelFragmentToGameFragment(level))
     }
 
     override fun onDestroyView() {
@@ -74,7 +66,7 @@ class ChooseLevelFragment : Fragment() {
     companion object
     {
         const val CHOOSE_FRAGMENT_NAME = "ChooseLevelFragment"
-        fun newInstance( ):ChooseLevelFragment
+        fun newInstance( ): ChooseLevelFragment
         {
 
             return ChooseLevelFragment()
