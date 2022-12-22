@@ -1,7 +1,7 @@
 package com.example.composition.domain.UseCases
 
-import com.example.composition.domain.Entity.GameSittings
-import com.example.composition.domain.Entity.Level
+import com.example.composition.domain.entity.GameSittings
+import com.example.composition.domain.entity.Level
 import com.example.composition.domain.repositories.GameRepository
 
 class GetGameSettingsUseCase(private val repository: GameRepository) {

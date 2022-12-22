@@ -9,7 +9,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.composition.R
 import com.example.composition.databinding.FragmentGameFinishedBinding
-import com.example.composition.domain.Entity.GameResult
 
 class GameFinishFragment:Fragment() {
     private  val args by navArgs<GameFinishFragmentArgs>()
@@ -28,27 +27,28 @@ class GameFinishFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.gameResult = args.gameresult
 
-
-        binding.tvRequiredAnswers.text =
+        /*binding.tvRequiredAnswers.text =
             String.format(requireContext().resources.getString(R.string.required_score),args.gameresult.gameSittings.minCountOfRightAnswers)
         binding.tvScoreAnswers.text=
             String.format(requireContext().resources.getString(R.string.required_score),args.gameresult.countRightAnswers)
         binding.tvRequiredPercentage.text=
-            String.format(requireContext().resources.getString(R.string.required_percentage),args.gameresult.gameSittings.minPercentOfRightAnswers)
-        /*binding.tvScorePercentage.text=
-            String.format(requireContext().resources.getString(R.string.score_percentage),args.gameresult.gameSittings.*/
+            String.format(requireContext().resources.getString(R.string.required_percentage),args.gameresult.gameSittings.minPercentOfRightAnswers)*/
+       // binding.tvScorePercentage.text= String.format(requireContext().resources.
+       // getString(R.string.score_percentage),percentOfRightAnswers)
+
         binding.buttonRetry.setOnClickListener {
             retryGame()
         }
-        if(args.gameresult.gameSittings.minCountOfRightAnswers<=args.gameresult.countRightAnswers)
+        /*if(args.gameresult.gameSittings.minCountOfRightAnswers<=args.gameresult.countRightAnswers)
         {
             binding.emojiResult.setImageResource(R.drawable.ic_smile)
         }
         else
         {
             binding.emojiResult.setImageResource(R.drawable.ic_sad)
-        }
+        }*/
 
 
 

@@ -1,8 +1,8 @@
 package com.example.composition.data
 
-import com.example.composition.domain.Entity.GameSittings
-import com.example.composition.domain.Entity.Level
-import com.example.composition.domain.Entity.Question
+import com.example.composition.domain.entity.GameSittings
+import com.example.composition.domain.entity.Level
+import com.example.composition.domain.entity.Question
 import com.example.composition.domain.repositories.GameRepository
 import java.lang.Integer.max
 import java.lang.Integer.min

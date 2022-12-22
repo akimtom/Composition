@@ -1,16 +1,15 @@
 package com.example.composition.prisentation
 
 import android.app.Application
-import android.content.Context
 import android.os.CountDownTimer
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.composition.R
 import com.example.composition.data.GameRepositoryImpl
-import com.example.composition.domain.Entity.GameResult
-import com.example.composition.domain.Entity.GameSittings
-import com.example.composition.domain.Entity.Level
-import com.example.composition.domain.Entity.Question
+import com.example.composition.domain.entity.GameResult
+import com.example.composition.domain.entity.GameSittings
+import com.example.composition.domain.entity.Level
+import com.example.composition.domain.entity.Question
 import com.example.composition.domain.UseCases.GenerateQuestionUseCase
 import com.example.composition.domain.UseCases.GetGameSettingsUseCase
 

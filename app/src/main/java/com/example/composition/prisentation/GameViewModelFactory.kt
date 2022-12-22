@@ -3,7 +3,7 @@ package com.example.composition.prisentation
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.composition.domain.Entity.Level
+import com.example.composition.domain.entity.Level
 
 class GameViewModelFactory(
     private val level: Level,

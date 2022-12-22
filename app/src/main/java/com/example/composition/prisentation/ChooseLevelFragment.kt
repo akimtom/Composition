@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.composition.databinding.ActivityMainBinding.inflate
 import com.example.composition.databinding.ChoseLevelFragmetnBinding
-import com.example.composition.domain.Entity.Level
+import com.example.composition.domain.entity.Level
 
 
 class ChooseLevelFragment : Fragment() {
@@ -63,15 +63,6 @@ class ChooseLevelFragment : Fragment() {
     }
 
 
-    companion object
-    {
-        const val CHOOSE_FRAGMENT_NAME = "ChooseLevelFragment"
-        fun newInstance( ): ChooseLevelFragment
-        {
 
-            return ChooseLevelFragment()
-
-        }
-    }
 
 }
